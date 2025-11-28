@@ -20,3 +20,16 @@ IF you use a source as the base/start for a file, then first place the source in
 **ALWAYS** use concise BUT CLEAR commit messages!
 
 Have a look at the example repository: https://github.com/EHB-MCT/example-readme
+
+
+
+app.get("/api/films", async (req, res) => {
+    // To get individually each id of the films
+    let id = req.query.id;
+    // Reads the file
+    const contents = await readFile("data/films.json", { encoding: "utf8" });
+    const data = JSON.parse(contents);
+    //get one film
+    let films = data[id]; 
+    res.json(films);
+});

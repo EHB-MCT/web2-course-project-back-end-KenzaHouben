@@ -22,27 +22,28 @@ app.get("/api/films", async (req, res) => {
 //app.get("/api/boardgame", (req,res) => {
 //    res.send("test");
 //})
+
+// duplicated the same one on accident
+
+// app.get("/api/films", async (req, res) => {
+//     // To get individually each id of the films
+//     let id = req.query.id;
+//     // Reads the file
+//     const contents = await readFile("data/films.json", { encoding: "utf8" });
+//     const data = JSON.parse(contents);
+//     //get one film
+//     let films = data[id]; 
+//     res.json(films);
+// });
  
-app.get("/api/boardgame", async (req, res) => {
-    //To get individually each id of the boardgames
-    let id = req.query.id;
-    //Read the boardgame file
-    const contents = await readFile("data/films.json", { encoding: "utf8" });
-    const data = JSON.parse(contents);
-    //get one bg
-    let bg = data[id]; //vb. data.120677
-    res.json(bg);
-});
- 
-app.post("/api/boardgame", async (req, res) => {
-    //Request the body so you can post a new boardgame via a body
+app.post("/api/films", async (req, res) => {
+    
     let data = req.body;
-    //res.send(req)
-    //writeFile so that it allows you to post a new body (I think)?
-    //Extra van Mike: Errase all white spaces
-    //data.name -> gets random naam van u boardgames
-    const fileName = data.name.replaceAll(" ", ""); //replaceAll(" ", "") maakt dat al u witruimte weggaat
-    await writeFile(`data/${fileName}.json`, JSON.stringify(data)); //string meegeven
+
+    console.log(data)
+ 
+    // const fileName = data.name.replaceAll(" ", "");
+    // await writeFile(`data/${fileName}.json`, JSON.stringify(data));
     res.send("succces");
 });
  
