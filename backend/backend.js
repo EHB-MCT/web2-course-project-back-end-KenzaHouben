@@ -2,10 +2,14 @@ import express from "express";
 import { readFile, writeFile } from "node:fs/promises";
 const app = express();
 const port = 3000;
+
+// const secret_password = process.env.SECRET_PASSWORD // 'test;
+
+//21:22 -> gitignore
  
 app.use(express.static("public"));
 app.use(express.json());
- 
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
