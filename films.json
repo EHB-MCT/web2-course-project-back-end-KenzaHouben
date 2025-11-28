@@ -1,0 +1,110 @@
+[
+	{
+		"imgURL": "src/images/following.jpg",
+		"id": 1,
+		"name": "Following",
+		"year": "1998",
+		"genre": "Neo-noir",
+		"runtime": "1h 9m",
+		"summary": "A young writer who follows strangers around London becomes entangled in the criminal world after meeting a mysterious thief. Nolan’s debut — shot on a shoestring budget in black and white."
+	},
+	{
+		"imgURL": "src/images/memento.jpg",
+		"id": 2,
+		"name": "Memento",
+		"year": "2000",
+		"genre": "Psychological, Thriller, Mystery",
+		"runtime": "1h 53m",
+		"summary": "A man with short-term memory loss uses tattoos and photos to hunt his wife’s killer, told in reverse order."
+	},
+	{
+		"imgURL": "src/images/insomnia.jpg",
+		"id": 3,
+		"name": "Insomnia",
+		"year": "2002",
+		"genre": "Psychological, Thriller, Crime, Drama",
+		"runtime": "1h 58m",
+		"summary": "A detective with a guilty conscience investigates a murder in an Alaskan town where the sun never sets."
+	},
+	{
+		"imgURL": "src/images/batman_begins.jpg",
+		"id": 4,
+		"name": "Batman Begins",
+		"year": "2005",
+		"genre": "Superhero, Action, Drama",
+		"runtime": "2h 20m",
+		"summary": "Bruce Wayne trains with the League of Shadows and becomes Batman to defend Gotham from corruption."
+	},
+	{
+		"imgURL": "src/images/the_prestige.jpg",
+		"id": 5,
+		"name": "The Prestige",
+		"year": "2006",
+		"genre": "Mystery, Drama, Science Fiction",
+		"runtime": "2h 10m",
+		"summary": "Two rival magicians obsessively compete to create the ultimate illusion, leading to deception and tragedy."
+	},
+	{
+		"imgURL": "src/images/the_dark_knight.jpg",
+		"id": 6,
+		"name": "The Dark Knight",
+		"year": "2008",
+		"genre": "Superhero, Crime, Thriller",
+		"runtime": "2h 32m",
+		"summary": "Batman faces the Joker, who plunges Gotham into chaos and tests the limits of justice and morality."
+	},
+	{
+		"imgURL": "src/images/inception.jpg",
+		"id": 7,
+		"name": "Inception",
+		"year": "2010",
+		"genre": "Science Fiction, Action, Heist",
+		"runtime": "2h 28m",
+		"summary": "A thief who enters dreams to steal secrets must plant an idea deep within a target’s mind."
+	},
+	{
+		"imgURL": "src/images/the_dark_knight_rises.jpg",
+		"id": 8,
+		"name": "The Dark Knight Rises",
+		"year": "2012",
+		"genre": "Superhero, Action, Drama",
+		"runtime": "2h 44m",
+		"summary": "A reclusive Bruce Wayne returns as Batman to face the powerful revolutionary Bane and save Gotham."
+	},
+	{
+		"imgURL": "src/images/interstellar.jpg",
+		"id": 9,
+		"name": "Interstellar",
+		"year": "2014",
+		"genre": "Science Fiction, Drama, Adventure",
+		"runtime": "2h 49m",
+		"summary": "A former pilot leads a mission through a wormhole to find a new home for humanity."
+	},
+	{
+		"imgURL": "src/images/dunkirk.jpg",
+		"id": 10,
+		"name": "Dunkirk",
+		"year": "2017",
+		"genre": "War, Drama, Historical",
+		"runtime": "1h 46m",
+		"summary": "Soldiers are evacuated from Dunkirk during WWII, told through intersecting timelines on land, sea, and air."
+	},
+	{
+		"imgURL": "src/images/tenet.jpg",
+		"id": 11,
+		"name": "Tenet",
+		"year": "2020",
+		"genre": "Science Fiction, Action, Spy, Thriller",
+		"runtime": "2h 30m",
+		"summary": "A secret agent manipulates time using “inversion” to stop a threat that could destroy the world."
+	},
+	{
+		"imgURL": "src/images/oppenheimer.jpg",
+		"id": 12,
+		"name": "Oppenheimer",
+		"year": "2023",
+		"genre": "Biographical, Drama, Historical",
+		"runtime": "3h 0m",
+		"summary": "The story of J. Robert Oppenheimer, who leads the creation of the atomic bomb and faces its moral aftermath."
+	}
+]
