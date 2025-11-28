@@ -4,7 +4,8 @@ import express from "express";
 const app = express();
 const port = 3000;
 
-const url = "mongodb+srv://kenzahouben_db_user:<db_password>@webii.mnrgcpo.mongodb.net/?appName=WEBII";
+// TODO: url info met wachtwoord in envi zetten!!
+const url = "mongodb+srv://kenzahouben_db_user:wachtwoord@webii.mnrgcpo.mongodb.net/?appName=WEBII";
 
 const client = new MongoClient(url, {
     serverApi: {
@@ -46,43 +47,40 @@ app.get("/", async (req, res) => {
     }
     finally {
         // Ensures that the client will close when you finish/error
-        // await client.close();
-        // res.send -> it stops? VRAGEN AAN MIKE
+        await client.close();
         res.send(message);
     }
 });
 
+// We maken hier een route/endpoint voor de films collection
 app.get("/films", async (req, res) => {
-    const database = client.db("courseproject");
+    let message = "";
+    try {
+        // Connect the client to the server	(optional starting in v4.7)
 
-    const films = database.collection("films");
+        const database = client.db("courseproject");
 
-    const test = [
-        {
-            "imgURL": "src/images/following.jpg",
-            "id": 1,
-            "name": "Following",
-            "year": "1998",
-            "genre": "Neo-noir",
-            "runtime": "1h 9m",
-            "summary": "A young writer who follows strangers around London becomes entangled in the criminal world after meeting a mysterious thief. Nolan’s debut — shot on a shoestring budget in black and white."
-        },
-        {
-            "imgURL": "src/images/memento.jpg",
-            "id": 2,
-            "name": "Memento",
-            "year": "2000",
-            "genre": "Psychological, Thriller, Mystery",
-            "runtime": "1h 53m",
-            "summary": "A man with short-term memory loss uses tattoos and photos to hunt his wife’s killer, told in reverse order."
-        }
-    ];
+        const films = database.collection("films");
 
-    const options = { ordered: true };
+        // const options = { ordered: true };
 
-    const result = await films.insertMany(test, options);
+        // https://www.mongodb.com/docs/drivers/node/current/crud/query/cursor/#return-an-array-of-all-documents
+        const result = await films.find();
+        // console.log(result);
+        const allValues = await result.toArray();
 
-    res.send(JSON.stringify(result));
+
+
+        message = allValues;
+
+    } catch (error) {
+        // res.status(500).send(`Error: ${JSON.stringify(error)}`);
+        console.log(error)
+    }
+    finally {
+        // Ensures that the client will close when you finish/error
+        res.send(message);
+    }
 });
 
 // TODO: make collections for ratings in Mongodb in database courseproject!!
