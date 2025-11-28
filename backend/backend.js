@@ -16,6 +16,9 @@ app.listen(port, () => {
  
 app.use(express.static("public"));
  
+app.get("/", (req, res) => {
+    res.sendFile("public/index.html");
+});
 app.get("/data/films", async (req, res) => {
     const contents = await readFile("data/films.json", { encoding: "utf8" });
     const data = JSON.parse(contents);

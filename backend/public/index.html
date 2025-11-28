@@ -76,32 +76,32 @@
 </head>
 <body>
     <h1>Films</h1>
+    <div style="max-width: 1200px; margin: 0 auto 40px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+        <h2 style="color: #333; margin-bottom: 20px;">API Documentation</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+            <div style="padding: 15px; border-left: 4px solid #4CAF50; background: #f9f9f9;">
+                <strong>GET /api/films</strong>
+                <p style="color: #666; font-size: 13px; margin-top: 8px;">Retrieve all films</p>
+            </div>
+            <div style="padding: 15px; border-left: 4px solid #2196F3; background: #f9f9f9;">
+                <strong>GET /api/films/:id</strong>
+                <p style="color: #666; font-size: 13px; margin-top: 8px;">Retrieve a specific film by ID</p>
+            </div>
+            <div style="padding: 15px; border-left: 4px solid #FF9800; background: #f9f9f9;">
+                <strong>POST /api/films</strong>
+                <p style="color: #666; font-size: 13px; margin-top: 8px;">Create a new film</p>
+            </div>
+            <div style="padding: 15px; border-left: 4px solid #2196F3; background: #f9f9f9;">
+                <strong>PUT /api/films/:id</strong>
+                <p style="color: #666; font-size: 13px; margin-top: 8px;">Update an existing film</p>
+            </div>
+            <div style="padding: 15px; border-left: 4px solid #f44336; background: #f9f9f9;">
+                <strong>DELETE /api/films/:id</strong>
+                <p style="color: #666; font-size: 13px; margin-top: 8px;">Delete a film</p>
+            </div>
+        </div>
+    </div>
     <div class="films-container" id="filmsContainer"></div>
 
-    <script>
-        // Fetch and display films from films.json
-        fetch('./films.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('filmsContainer');
-                
-                data.forEach(film => {
-                    const card = document.createElement('div');
-                    card.className = 'film-card';
-                    card.innerHTML = `
-                        <img src="${film.poster || 'https://via.placeholder.com/280x200'}" alt="${film.title}">
-                        <div class="film-info">
-                            <div class="film-title">${film.title}</div>
-                            <div class="film-details"><strong>Year:</strong> ${film.year || 'N/A'}</div>
-                            <div class="film-details"><strong>Genre:</strong> ${film.genre || 'N/A'}</div>
-                            <div class="film-details"><strong>Rating:</strong> ${film.rating || 'N/A'}</div>
-                            <div class="film-description">${film.description || 'No description available'}</div>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            })
-            .catch(error => console.error('Error loading films:', error));
-    </script>
 </body>
 </html>
