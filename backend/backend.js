@@ -1,13 +1,16 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
+import { readFile, writeFile } from "node:fs/promises"
 import express from "express";
+import "dotenv/config";
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 
-// TODO: url info met wachtwoord in envi zetten!!
-const url = "mongodb+srv://kenzahouben_db_user:wachtwoord@webii.mnrgcpo.mongodb.net/?appName=WEBII";
+// TODO: bekijk mike zijn video om te zien hoe hij dit doet
+const uri = process.env.MONGO_URI;
 
-const client = new MongoClient(url, {
+const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
         strict: true,
