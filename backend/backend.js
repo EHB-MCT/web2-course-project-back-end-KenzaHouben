@@ -7,7 +7,14 @@ import cors from "cors";
 const app = express();
 const port = 3000;
 
+// Middleware 
+app.use(express.static("public"));
+app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+
 // TODO: bekijk mike zijn video om te zien hoe hij dit doet
+// TODO: vraag aan Mike, want en variable niet te zien op render
 const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri, {
@@ -18,16 +25,10 @@ const client = new MongoClient(uri, {
     }
 });
 
-// Middleware 
-app.use(express.static("public"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
 app.use(express.static("public"));
 
-app.get("/data/films", async (req, res) => {
-    const contents = await readFile("data/films.json", { encoding: "utf8" });
+app.get("/films", async (req, res) => {
+    const contents = await readFile("/data/films.json", { encoding: "utf8" });
     const data = JSON.parse(contents);
     res.json(data);
 });
@@ -56,7 +57,7 @@ app.get("/", async (req, res) => {
 });
 
 // We maken hier een route/endpoint voor de films collection
-app.get("/films", async (req, res) => {
+app.get("/data/films", async (req, res) => {
     let message = "";
     try {
         // Connect the client to the server	(optional starting in v4.7)
@@ -71,8 +72,6 @@ app.get("/films", async (req, res) => {
         const result = await films.find();
         // console.log(result);
         const allValues = await result.toArray();
-
-
 
         message = allValues;
 
@@ -93,7 +92,6 @@ app.get("/reviews", async (req, res) => {
 
 });
 
-
 // app.post("/data/films", async (req, res) => {
 
 //     let data = req.body;
@@ -102,7 +100,6 @@ app.get("/reviews", async (req, res) => {
 
 //     res.send("succces");
 // });
-
 
 // Starts the server
 app.listen(port, () => {
