@@ -28,7 +28,8 @@ const client = new MongoClient(uri, {
 app.use(express.static("public"));
 
 app.get("/films", async (req, res) => {
-    const contents = await readFile("/data/films.json", { encoding: "utf8" });
+    // data/films.json -> NOT /data/films.json
+    const contents = await readFile("data/films.json", { encoding: "utf8" });
     const data = JSON.parse(contents);
     res.json(data);
 });
@@ -92,7 +93,8 @@ app.get("/reviews", async (req, res) => {
 
 });
 
-// app.post("/data/films", async (req, res) => {
+// werkt niet in postman
+// app.post("data/films", async (req, res) => {
 
 //     let data = req.body;
 
