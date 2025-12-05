@@ -97,14 +97,14 @@ app.get("/reviews", async (req, res) => {
 });
 
 // werkt niet in postman
-// app.post("data/films", async (req, res) => {
+app.post("data/films", async (req, res) => {
 
-//     let data = req.body;
+    let data = req.body;
 
-//     console.log(data)
+    console.log(data)
 
-//     res.send("succces");
-// });
+    res.send("succces");
+});
 
 // Starts the server
 app.listen(port, () => {
