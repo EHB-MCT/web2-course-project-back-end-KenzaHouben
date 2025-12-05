@@ -1,5 +1,5 @@
 import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
-import { readFile, writeFile } from "node:fs/promises"
+// import { readFile, writeFile } from "node:fs/promises"
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
@@ -13,8 +13,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-// TODO: bekijk mike zijn video om te zien hoe hij dit doet
-// TODO: vraag aan Mike, want en variable niet te zien op render
 const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri, {
@@ -27,15 +25,6 @@ const client = new MongoClient(uri, {
 });
 
 app.use(express.static("public"));
-
-
-app.get("/films", async (req, res) => {
-    // data/films.json -> NOT /data/films.json
-
-    const contents = await readFile("data/films.json", { encoding: "utf8" });
-    const data = JSON.parse(contents);
-    res.json(data);
-});
 
 // Route/eindpoint
 app.get("/", async (req, res) => {
@@ -61,24 +50,29 @@ app.get("/", async (req, res) => {
 });
 
 // We maken hier een route/endpoint voor de films collection
+// "/data/films" -> route naam
 app.get("/data/films", async (req, res) => {
     let message = "";
     try {
-        // Connect the client to the server	(optional starting in v4.7)
-
+        console.log("Query");
+        console.log(req.query);
         const database = client.db("courseproject");
-
         const films = database.collection("films");
 
-        // const options = { ordered: true };
-
+        const query = { id: parseInt(req.query.id) };
         // https://www.mongodb.com/docs/drivers/node/current/crud/query/cursor/#return-an-array-of-all-documents
-        const result = await films.find();
-        // console.log(result);
-        const allValues = await result.toArray();
+        // https://www.mongodb.com/docs/drivers/node/current/crud/query/retrieve/#findone---example--full-file
 
-        message = allValues;
+        // if ok one film
+        // else all films -> find
+        const result = await films.findOne(query);
 
+        // const allValues = await result.toArray();
+        message = result;
+        console.log("Query:", query);
+        console.log("Result:", result);
+
+        // res.send(result);
     } catch (error) {
         // res.status(500).send(`Error: ${JSON.stringify(error)}`);
         console.log(error)
@@ -89,20 +83,15 @@ app.get("/data/films", async (req, res) => {
     }
 });
 
-// TODO: make collections for ratings in Mongodb in database courseproject!!
 // TODO: CRUD For reviews: Create - Read - Update - Delete
 app.get("/reviews", async (req, res) => {
     // TODO: Return all reviews
 
 });
 
-// werkt niet in postman
-app.post("data/films", async (req, res) => {
-
+app.post("/data/films", async (req, res) => {
     let data = req.body;
-
     console.log(data)
-
     res.send("succces");
 });
 
