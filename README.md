@@ -1,6 +1,9 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=21865023)
-# Your project name ✨
-A short description of your project. Aim for 2-3 lines. \
+# The World Of Christopher Nolan ✨
+The website is an interactive web platform where users can view and rate twelve
+Christopher Nolan films. Users can submit a rating for a selected film along with their
+name. Ratings influence the top five film rankings shown on the homepage. Visitors can
+only add ratings, while only the administrator (me) has permission to delete ratings.
 
 Website url: [website.be](website.be) (optional)
 
@@ -22,3 +25,8 @@ IF you use a source as the base/start for a file, then first place the source in
 Have a look at the example repository: https://github.com/EHB-MCT/example-readme
 
 // TODO: om te mergen op de main branch zijn!!
+
+
+https://www.geeksforgeeks.org/web-tech/express-js-app-delete-function/
+
+https://stackoverflow.com/questions/65015000/how-do-i-use-express-js-app-delete-to-remove-a-specific-object-from-an-array

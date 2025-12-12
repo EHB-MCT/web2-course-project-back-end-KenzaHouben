@@ -21,7 +21,6 @@ const client = new MongoClient(uri, {
         strict: true,
         deprecationErrors: true,
     }
-
 });
 
 app.use(express.static("public"));
@@ -101,16 +100,41 @@ app.get("/data/films", async (req, res) => {
     }
 });
 
+// app.post("/data/films", async (req, res) => {
+//     let data = req.body;
+//     console.log(data)
+//     res.send("succces");
+// });
+
 // TODO: CRUD For reviews: Create - Read - Update - Delete
-app.get("/reviews", async (req, res) => {
+app.get("/data/ratings", async (req, res) => {
     // TODO: Return all reviews
 
 });
 
-app.post("/data/films", async (req, res) => {
-    let data = req.body;
-    console.log(data)
-    res.send("succces");
+// user can post something new, here a rating for a movie
+app.post("/data/ratings", async (req, res) => {
+    let message = "";
+
+    try {
+        console.log("Query: ");
+        console.log(req.query);
+        const database = client.db("courseproject");
+        const ratings = database.collection("ratings");
+        // https://stackoverflow.com/questions/26914380/schema-for-user-ratings-key-value-db
+        // https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(`Error: ${JSON.stringify(error)}`)
+    } finally {
+        // res.send(message);
+    }
+});
+
+// admin has the authority to delete a rating or user
+app.delete("/data/ratings", async (req, res) => {
+
 });
 
 // Starts the server
