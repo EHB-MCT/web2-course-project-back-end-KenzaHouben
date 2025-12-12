@@ -36,7 +36,6 @@ app.get("/", async (req, res) => {
         await client.db("admin").command({ ping: 1 });
 
         console.log("Pinged your deployment. You successfully connected to MonogoDB!");
-
         message = "Hello world: SUCCES PING";
 
     } catch (error) {
@@ -54,28 +53,47 @@ app.get("/", async (req, res) => {
 app.get("/data/films", async (req, res) => {
     let message = "";
     try {
-        console.log("Query");
+        console.log("Query: ");
         console.log(req.query);
         const database = client.db("courseproject");
         const films = database.collection("films");
 
-        const query = { id: parseInt(req.query.id) };
         // https://www.mongodb.com/docs/drivers/node/current/crud/query/cursor/#return-an-array-of-all-documents
         // https://www.mongodb.com/docs/drivers/node/current/crud/query/retrieve/#findone---example--full-file
 
         // if ok one film
         // else all films -> find
-        const result = await films.findOne(query);
+
+        // 12/12 if else https://chatgpt.com/share/693bd304-418c-800a-a879-f9a055773c2d
+        // query is een attribute van req
+        if (req.query.id) {
+            console.log("Fetching ONE film...");
+            const query = { id: parseInt(req.query.id) };
+            const result = await films.findOne(query);
+            // because result was null, we put an error to it and give a status with the error
+            if (result == null) {
+                // 4xx -> user "fault"
+                res.status(404).json({ message: "Film not found" })
+            }
+
+            message = result;
+        } else {
+            console.log("Fetching ALL films...");
+            const cursor = films.find({});
+            const allFilms = await cursor.toArray();
+            message = allFilms;
+        }
 
         // const allValues = await result.toArray();
-        message = result;
-        console.log("Query:", query);
-        console.log("Result:", result);
+        // message = result;
+        console.log("Query:", req.query);
+        console.log("Result:", message);
 
         // res.send(result);
     } catch (error) {
-        // res.status(500).send(`Error: ${JSON.stringify(error)}`);
-        console.log(error)
+        console.log(error);
+        // 500 -> server "fault"
+        res.status(500).send(`Error: ${JSON.stringify(error)}`);
     }
     finally {
         // Ensures that the client will close when you finish/error
@@ -99,3 +117,6 @@ app.post("/data/films", async (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
+
+
+// TODO: als er geen id wordt gegeven moet je een error meegeven
