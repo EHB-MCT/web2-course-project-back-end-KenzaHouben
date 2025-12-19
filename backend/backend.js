@@ -119,10 +119,12 @@ app.post("/data/ratings", async (req, res) => {
         console.log(req.body);
         const database = client.db("courseproject");
         const ratings = database.collection("ratings");
-        // https://stackoverflow.com/questions/26914380/schema-for-user-ratings-key-value-db
-        // https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/
+
+
         // Fixed an issue with Claude where error was shown in Postman
         // 19/12/2025: https://claude.ai/share/768de845-143a-43e5-b4fa-c65eda2d5949
+        // Consulted an example where insertOne({}) was used and implemented it to my own code
+        // 19/12/2025: https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/
         const result = await ratings.insertOne({
             username: req.body.username,
             rating: req.body.rating

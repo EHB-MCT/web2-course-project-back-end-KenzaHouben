@@ -26,9 +26,13 @@ MONGODB:
 - Consulted example code on MongoDB of "Access Data From A Cursor" (https://www.mongodb.com/docs/drivers/node/current/crud/query/cursor/#return-an-array-of-all-documents) on december 2025
     - backend/backend.js
 
+- Consulted example code on MongoDB of "db.collection.insertOne() (mongosh method)" (https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/) on 19/12/2025
+    - backend/backend.js
 
 Deze bronnen heb ik nog niet gebruikt, kan dus zijn dat ze later worden verwijderd indien ik ze niet heb gebruikt.
 
 https://www.geeksforgeeks.org/web-tech/express-js-app-delete-function/
 
 https://stackoverflow.com/questions/65015000/how-do-i-use-express-js-app-delete-to-remove-a-specific-object-from-an-array
+
+// https://stackoverflow.com/questions/26914380/schema-for-user-ratings-key-value-db
