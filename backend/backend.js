@@ -114,21 +114,34 @@ app.get("/data/ratings", async (req, res) => {
 
 // user can post something new, here a rating for a movie
 app.post("/data/ratings", async (req, res) => {
-    let message = "";
+    // let message = "";
 
     try {
         console.log("Query: ");
-        console.log(req.query);
+        console.log(req.body);
         const database = client.db("courseproject");
         const ratings = database.collection("ratings");
         // https://stackoverflow.com/questions/26914380/schema-for-user-ratings-key-value-db
         // https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/
+
+        const result = await ratings.insertOne({
+            username: req.body.username,
+            rating: req.body.rating
+        });
+
+        const message = {
+            succes: true,
+            insertedId: result.insertedId
+        };
+
+        res.status(201).json(message);
 
     } catch (error) {
         console.log(error);
         res.status(500).send(`Error: ${JSON.stringify(error)}`)
     } finally {
         // res.send(message);
+        await client.close();
     }
 });
 
