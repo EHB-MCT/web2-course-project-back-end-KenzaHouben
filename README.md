@@ -1,31 +1,33 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=21865023)
+
 # The World Of Christopher Nolan ✨
+
 The website is an interactive web platform where users can view and rate twelve
 Christopher Nolan films. Users can submit a rating for a selected film along with their
-name. Ratings influence the top five film rankings shown on the homepage. Visitors can
+name. Ratings influence the top three film rankings shown on the homepage. Visitors can
 only add ratings, while only the administrator (me) has permission to delete ratings.
 
 Website url: [website.be](website.be) (optional)
 
-If you want to add more sections, please do so after the existing ones (avoid burying your sources under a lot of text!).
-
-## Up & running (optional) 🏃‍➡️
-This should contain step by step instructions to run your project (delete this section if it's not relevant). \
-Also include login credentials or other vital information if needed.
-
 ## Sources 🗃️
-List **ALL your used sources** here:
-- Used a tutorial or example code? Place a link to them here. (youtube, website, github, ...) and **list the files in which they were used**.
-- Used ChatGPT? Generate a ChatGPT share link: options (three dots) > share and **list the files in which it was used**. This will not work if you have uploaded images in your prompt. In that case, add screenshots instead.
 
-It's not enough to only list the sources here, also add the sources to the top of the files in which you used them and indicate the specific parts of the code which are not your own (by writing comments and refering to the correct source(s)). \
-IF you use a source as the base/start for a file, then first place the source in the file and **COMMIT it IMMEDIATELY, BEFORE** adding your own code or modifying it. \
-**ALWAYS** use concise BUT CLEAR commit messages!
+CHATGPT:
+- ChatGPT conversation () on 12/12/2025
+    - backend/backend.js
 
-Have a look at the example repository: https://github.com/EHB-MCT/example-readme
+CLAUDE:
+- Claude conversation (https://claude.ai/share/768de845-143a-43e5-b4fa-c65eda2d5949) on 19/12/2025
+    - backend/backend.js
 
-// TODO: om te mergen op de main branch zijn!!
+MONGODB:
+- Consulted example code on MongoDB of "Find Documents" (https://www.mongodb.com/docs/drivers/node/current/crud/query/retrieve/#findone---example--full-file) on december 2025
+    - backend/backend.js
 
+- Consulted example code on MongoDB of "Access Data From A Cursor" (https://www.mongodb.com/docs/drivers/node/current/crud/query/cursor/#return-an-array-of-all-documents) on december 2025
+    - backend/backend.js
+
+
+Deze bronnen heb ik nog niet gebruikt, kan dus zijn dat ze later worden verwijderd indien ik ze niet heb gebruikt.
 
 https://www.geeksforgeeks.org/web-tech/express-js-app-delete-function/
 
