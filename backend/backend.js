@@ -139,18 +139,26 @@ app.post("/data/ratings", async (req, res) => {
 
 
 // TODO: CRUD For reviews: Create - Read - Update - Delete
+// Step-by-step guide where Claude helped with guiding me and correcting mistakes
+// 23/12/2025: https://claude.ai/share/d0ca1706-a9bb-4edb-8813-2560ac825a22
 app.get("/data/rankings", async (req, res) => {
     try {
         const database = client.db("courseproject");
         const ratings = database.collection("ratings");
 
         const pipeline = [{
+            // Consulted an example where $group was used and implemented it to my own code
+            // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/
             $group: {
                 _id: "$film_id",
+                // Consulted an example where $avg was used and implemented it to my own code
+                // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/avg/
                 averageRating: { $avg: "$rating" }
             }
         },
         {
+            // Consulted an example where $sort was used and implemented it to my own code
+            // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/sort/
             $sort: {
                 averageRating: -1
             }
@@ -160,10 +168,12 @@ app.get("/data/rankings", async (req, res) => {
         },
         {
             $addFields: {
-                _id: {$toInt: "$_id"}
+                _id: { $toInt: "$_id" }
             }
         },
         {
+            // Consulted an example where $lookup was used and implemented it to my own code
+            // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/
             $lookup: {
                 from: "films",
                 localField: "_id",
@@ -177,7 +187,7 @@ app.get("/data/rankings", async (req, res) => {
 
         res.json(result);
 
-    } catch (error){
+    } catch (error) {
         console.log(error);
         res.status(500).send(`Error: ${JSON.stringify(error)}`);
     } finally {
