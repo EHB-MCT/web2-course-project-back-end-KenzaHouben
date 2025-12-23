@@ -143,7 +143,6 @@ app.get("/data/rankings", async (req, res) => {
     try {
         const database = client.db("courseproject");
         const ratings = database.collection("ratings");
-        const films = database.collection("films");
 
         const pipeline = [{
             $group: {
@@ -158,6 +157,19 @@ app.get("/data/rankings", async (req, res) => {
         },
         {
             $limit: 3
+        },
+        {
+            $addFields: {
+                _id: {$toInt: "$_id"}
+            }
+        },
+        {
+            $lookup: {
+                from: "films",
+                localField: "_id",
+                foreignField: "id",
+                as: "filmDetails"
+            }
         }
         ]
 
