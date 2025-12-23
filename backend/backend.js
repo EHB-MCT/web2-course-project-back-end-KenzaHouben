@@ -120,7 +120,6 @@ app.post("/data/ratings", async (req, res) => {
         const database = client.db("courseproject");
         const ratings = database.collection("ratings");
 
-
         // Fixed an issue with Claude where error was shown in Postman
         // 19/12/2025: https://claude.ai/share/768de845-143a-43e5-b4fa-c65eda2d5949
         // Consulted an example where insertOne({}) was used and implemented it to my own code
@@ -128,6 +127,8 @@ app.post("/data/ratings", async (req, res) => {
         const result = await ratings.insertOne({
             username: req.body.username,
             rating: req.body.rating,
+            // Fixed an error thanks to Claude help
+            // 23/12/2025: https://claude.ai/share/45504781-cfff-428d-8165-c30d4be00e09
             film_id: req.body.film_id
         });
 
@@ -142,7 +143,9 @@ app.post("/data/ratings", async (req, res) => {
         console.log(error);
         res.status(500).send(`Error: ${JSON.stringify(error)}`)
     } finally {
-        await client.close();
+        // Fixed an error thanks to Claude help
+        // 23/12/2025: https://claude.ai/share/45504781-cfff-428d-8165-c30d4be00e09
+        res.send(message);
     }
 });
 

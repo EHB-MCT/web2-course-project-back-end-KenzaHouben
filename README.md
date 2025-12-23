@@ -19,6 +19,9 @@ CLAUDE:
 - Claude conversation (https://claude.ai/share/768de845-143a-43e5-b4fa-c65eda2d5949) on 19/12/2025
     - backend/backend.js
 
+- Claude conversation (https://claude.ai/share/45504781-cfff-428d-8165-c30d4be00e09) on 23/12/2O25
+    - backend/backend.js
+
 MONGODB:
 - Consulted example code on MongoDB of "Find Documents" (https://www.mongodb.com/docs/drivers/node/current/crud/query/retrieve/#findone---example--full-file) on december 2025
     - backend/backend.js
@@ -28,11 +31,3 @@ MONGODB:
 
 - Consulted example code on MongoDB of "db.collection.insertOne() (mongosh method)" (https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/) on 19/12/2025
     - backend/backend.js
-
-Deze bronnen heb ik nog niet gebruikt, kan dus zijn dat ze later worden verwijderd indien ik ze niet heb gebruikt.
-
-https://www.geeksforgeeks.org/web-tech/express-js-app-delete-function/
-
-https://stackoverflow.com/questions/65015000/how-do-i-use-express-js-app-delete-to-remove-a-specific-object-from-an-array
-
-// https://stackoverflow.com/questions/26914380/schema-for-user-ratings-key-value-db
