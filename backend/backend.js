@@ -127,7 +127,8 @@ app.post("/data/ratings", async (req, res) => {
         // 19/12/2025: https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/
         const result = await ratings.insertOne({
             username: req.body.username,
-            rating: req.body.rating
+            rating: req.body.rating,
+            film_id: req.body.film_id
         });
 
         const message = {
