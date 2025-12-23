@@ -100,18 +100,6 @@ app.get("/data/films", async (req, res) => {
     }
 });
 
-// app.post("/data/films", async (req, res) => {
-//     let data = req.body;
-//     console.log(data)
-//     res.send("succces");
-// });
-
-// TODO: CRUD For reviews: Create - Read - Update - Delete
-app.get("/data/ratings", async (req, res) => {
-    // TODO: Return all reviews
-
-});
-
 // user can post something new, here a rating for a movie
 app.post("/data/ratings", async (req, res) => {
     try {
@@ -146,6 +134,42 @@ app.post("/data/ratings", async (req, res) => {
         // Fixed an error thanks to Claude help
         // 23/12/2025: https://claude.ai/share/45504781-cfff-428d-8165-c30d4be00e09
         res.send(message);
+    }
+});
+
+
+// TODO: CRUD For reviews: Create - Read - Update - Delete
+app.get("/data/rankings", async (req, res) => {
+    try {
+        const database = client.db("courseproject");
+        const ratings = database.collection("ratings");
+        const films = database.collection("films");
+
+        const pipeline = [{
+            $group: {
+                _id: "$film_id",
+                averageRating: { $avg: "$rating" }
+            }
+        },
+        {
+            $sort: {
+                averageRating: -1
+            }
+        },
+        {
+            $limit: 3
+        }
+        ]
+
+        const result = await ratings.aggregate(pipeline).toArray();
+
+        res.json(result);
+
+    } catch (error){
+        console.log(error);
+        res.status(500).send(`Error: ${JSON.stringify(error)}`);
+    } finally {
+
     }
 });
 
