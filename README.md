@@ -12,37 +12,42 @@ Website url: https://web2-course-project-back-end-kenzahouben.onrender.com/
 ## Sources 🗃️
 
 CHATGPT:
+
 - ChatGPT conversation () on 12/12/2025
-    - backend/backend.js
+  - backend/backend.js
 
 CLAUDE:
+
 - Claude conversation (https://claude.ai/share/768de845-143a-43e5-b4fa-c65eda2d5949) on 19/12/2025
-    - backend/backend.js
+  - backend/backend.js
 
 - Claude conversation (https://claude.ai/share/45504781-cfff-428d-8165-c30d4be00e09) on 23/12/2O25
-    - backend/backend.js
+  - backend/backend.js
 
 - Claude conversation (https://claude.ai/share/d0ca1706-a9bb-4edb-8813-2560ac825a22) used on 23/12/2025
+  - backend/backend.js
+
+- Claude conversation (https://claude.ai/share/72bdf942-f215-4693-b676-9aadc1112122) used on 21/02/2026 
     - backend/backend.js
 
-MONGODB:
+  MONGODB:
 - Consulted example code on MongoDB of "Find Documents" (https://www.mongodb.com/docs/drivers/node/current/crud/query/retrieve/#findone---example--full-file) on december 2025
-    - backend/backend.js
+  - backend/backend.js
 
 - Consulted example code on MongoDB of "Access Data From A Cursor" (https://www.mongodb.com/docs/drivers/node/current/crud/query/cursor/#return-an-array-of-all-documents) on december 2025
-    - backend/backend.js
+  - backend/backend.js
 
 - Consulted example code on MongoDB of "db.collection.insertOne() (mongosh method)" (https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/) on 19/12/2025
-    - backend/backend.js
+  - backend/backend.js
 
 - Consulted example code on MongoDB of "$lookup (aggregation stage)" (https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/) on 23/12/2025
-    - backend/backend.js
+  - backend/backend.js
 
 - Consulted example code on MongoDB of "$group (aggregation stage)" (https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/) on 23/12/2025
-    - backend/backend.js
+  - backend/backend.js
 
 - Consulted example code on MongoDB of "$sort (aggregation stage)" (https://www.mongodb.com/docs/manual/reference/operator/aggregation/sort/) on 23/12/2025
-    - backend/backend.js
+  - backend/backend.js
 
 - Consulted example code on MongoDB of "$avg (accumulator operator)" (https://www.mongodb.com/docs/manual/reference/operator/aggregation/avg/) on 23/12/2025
-    - backend/backend.js
+  - backend/backend.js
