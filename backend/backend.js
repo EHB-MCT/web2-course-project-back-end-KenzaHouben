@@ -335,6 +335,8 @@ app.get("/data/ratingPerFilm", async (req, res) => {
                     }
                 },
                 {
+                    // Claude guiding me step-by-step with correcting averageRating
+                    // 07/03/2026:https://claude.ai/share/d4758c40-ef69-45d6-920b-8e356815825c
                     $addFields: {
                         averageRating: { $round: ["$averageRating", 1] }
                     }
