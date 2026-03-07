@@ -170,48 +170,62 @@ app.get("/data/rankings", async (req, res) => {
         const ratings = database.collection("ratings");
 
         // Aggregation pipeline - processes data in stages
-        const pipeline = [{
-            // Consulted an example where $group was used and implemented it to my own code
-            // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/
+        const pipeline = [
+            {
+                $addFields: {
+                    film_id: {
+                        $toInt: {
+                            $convert: {
+                                input: "$film_id",
+                                to: "int",
+                                onError: null
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                // Consulted an example where $group was used and implemented it to my own code
+                // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/
 
-            // Stage 1: Group ratings by film_id and calculate average
-            $group: {
-                _id: "$film_id", // Group by film_id
-                // Consulted an example where $avg was used and implemented it to my own code
-                // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/avg/
-                averageRating: { $avg: "$rating" } // Calculate average rating
-            }
-        },
-        {
-            // Consulted an example where $sort was used and implemented it to my own code
-            // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/sort/
+                // Stage 1: Group ratings by film_id and calculate average
+                $group: {
+                    _id: "$film_id", // Group by film_id
+                    // Consulted an example where $avg was used and implemented it to my own code
+                    // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/avg/
+                    averageRating: { $avg: "$rating" } // Calculate average rating
+                }
+            },
+            {
+                // Consulted an example where $sort was used and implemented it to my own code
+                // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/sort/
 
-            // Stage 2: Sort by average rating (descending = highest first)
-            $sort: {
-                averageRating: -1 // -1 = descending order
-            }
-        },
-        {
-            // Stage 3: Limit to top 3 results
-            $limit: 3
-        },
-        {
-            // Stage 4: Convert _id from string to integer for lookup
-            $addFields: {
-                _id: { $toInt: "$_id" }
-            }
-        },
-        {
-            // Consulted an example where $lookup was used and implemented it to my own code
-            // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/
+                // Stage 2: Sort by average rating (descending = highest first)
+                $sort: {
+                    averageRating: -1 // -1 = descending order
+                }
+            },
+            {
+                // Stage 3: Limit to top 3 results
+                $limit: 3
+            },
+            {
+                // Stage 4: Convert _id from string to integer for lookup
+                $addFields: {
+                    _id: { $toInt: "$_id" }
+                }
+            },
+            {
+                // Consulted an example where $lookup was used and implemented it to my own code
+                // 23/12/2025: https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/
 
-            $lookup: {
-                from: "films", // Collection to join with
-                localField: "_id", // Field from ratings (film_id)
-                foreignField: "id", // Field from films to match
-                as: "filmDetails" // Name for joined data array
+                $lookup: {
+                    from: "films", // Collection to join with
+                    localField: "_id", // Field from ratings (film_id)
+                    foreignField: "id", // Field from films to match
+                    as: "filmDetails" // Name for joined data array
+                }
             }
-        }
         ]
 
         // Execute aggregation pipeline and convert result to array
