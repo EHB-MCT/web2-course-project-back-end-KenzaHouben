@@ -230,6 +230,59 @@ app.get("/data/rankings", async (req, res) => {
     }
 });
 
+app.get("/data/rankings/all", async (req, res) => {
+    const database = client.db("courseproject");
+    const ratings = database.collection("ratings");
+
+    try {
+        const pipeline = [
+            {
+                $addFields: {
+                    film_id: {
+                        $toInt: {
+                            $convert: {
+                                input: "$film_id",
+                                to: "int",
+                                onError: null
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: "$film_id",
+                    averageRating: { $avg: "$rating" }
+                }
+            },
+            {
+                $sort: {
+                    averageRating: -1
+                }
+            },
+            {
+                $addFields: {
+                    _id: { $toInt: "$_id" }
+                }
+            },
+            {
+                $lookup: {
+                    from: "films",
+                    localField: "_id",
+                    foreignField: "id",
+                    as: "filmDetails"
+                }
+            }
+        ]
+        const result = await ratings.aggregate(pipeline).toArray();
+        res.json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(`Error: ${JSON.stringify(error)}`);
+    } finally {
+    }
+});
+
 // Step-by-step guide with Claude on how to make an average rating for each film
 // 21/02/2026: https://claude.ai/share/72bdf942-f215-4693-b676-9aadc1112122
 app.get("/data/ratingPerFilm", async (req, res) => {
