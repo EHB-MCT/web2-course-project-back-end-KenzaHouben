@@ -244,6 +244,8 @@ app.get("/data/rankings", async (req, res) => {
     }
 });
 
+// Step-by-step guide where Claude helped with guiding me and correcting mistakes by making the show all rankings
+// 07/03/2026: https://claude.ai/share/813b270f-2df2-4be1-bb9e-4b1bb457faf2
 app.get("/data/rankings/all", async (req, res) => {
     const database = client.db("courseproject");
     const ratings = database.collection("ratings");
@@ -334,7 +336,7 @@ app.get("/data/ratingPerFilm", async (req, res) => {
                 },
                 {
                     $addFields: {
-                        averageRating: { $round: "$averageRating" }
+                        averageRating: { $round: ["$averageRating", 1] }
                     }
                 },
                 {
